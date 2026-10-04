@@ -1,0 +1,27 @@
+/* Gemeinsame Button-Styles */
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font: inherit;
+    cursor: pointer;
+}
+
+/* Hauptaktion, z. B. "In den Warenkorb" */
+.btn-primary {
+    background-color: #2563eb;
+    border: 1px solid #2563eb;
+    color: #ffffff;
+}
+
+/* Nebenaktion, z. B. "Abbrechen" */
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid #2563eb;
+    color: #2563eb;
+}
+
+/* Deaktivierter Button */
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
