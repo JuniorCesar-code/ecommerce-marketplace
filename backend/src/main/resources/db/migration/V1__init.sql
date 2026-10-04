@@ -1,0 +1,1 @@
+-- Initial schema (Sprint 1): erstmal leer. Tabellen folgen in späteren Sprints.
