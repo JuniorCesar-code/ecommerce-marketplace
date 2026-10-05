@@ -12,4 +12,4 @@ services:
       - marketplace_postgres_data:/var/lib/postgresql/data
 
 volumes:
-  marketplace_postgres_data::
+  marketplace_postgres_data:
