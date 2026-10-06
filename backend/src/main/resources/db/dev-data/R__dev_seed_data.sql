@@ -1,0 +1,4 @@
+-- Testdaten NUR für lokale Entwicklung (Profil "dev").
+-- Wird bei Änderungen automatisch neu ausgeführt.
+-- Beispieldaten (Produkte, Kategorien, ...) hier ergänzen,
+-- sobald die Tabellen existieren (ab Sprint 3).
