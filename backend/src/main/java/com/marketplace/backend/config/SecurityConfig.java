@@ -7,6 +7,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
@@ -18,10 +20,12 @@ public class SecurityConfig {
         http
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/health").permitAll()
+                        .requestMatchers(
+                                "/api/health",
+                                "/api/auth/register"
+                        ).permitAll()
                         .anyRequest().authenticated()
                 );
-
         return http.build();
     }
 
@@ -52,5 +56,10 @@ public class SecurityConfig {
                 .registerCorsConfiguration("/**", configuration);
 
         return source;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
