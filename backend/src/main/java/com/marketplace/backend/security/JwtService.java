@@ -45,6 +45,11 @@ public class JwtService {
         return parseClaims(token).getSubject();
     }
 
+
+    public String extractRole(String token) {
+        return parseClaims(token).get("role", String.class);
+    }
+
     // Prüft, ob das Token gültig und nicht abgelaufen ist
     public boolean isTokenValid(String token) {
         try {
