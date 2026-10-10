@@ -59,6 +59,26 @@ public class GlobalExceptionHandler {
                 .body(apiError);
     }
 
+    // 401 → Wrong email or password
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<ApiError> handleInvalidCredentials(
+            InvalidCredentialsException exception,
+            HttpServletRequest request
+    ) {
+
+        ApiError apiError = new ApiError(
+                LocalDateTime.now(),
+                HttpStatus.UNAUTHORIZED.value(),
+                HttpStatus.UNAUTHORIZED.getReasonPhrase(),
+                exception.getMessage(),
+                request.getRequestURI()
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body(apiError);
+    }
+
     // 500 → Unexpected server error
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiError> handleGeneralException(
