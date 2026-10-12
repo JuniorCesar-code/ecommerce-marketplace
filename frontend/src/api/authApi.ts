@@ -41,3 +41,47 @@ export async function registerUser(
 
     return response.json()
 }
+
+// --- Login ---
+
+// Was React beim Login sendet
+export interface LoginRequest {
+    email: string
+    password: string
+}
+
+// Was das Backend nach erfolgreichem Login zurueckgibt
+export interface LoginResponse {
+    token: string
+    id: number
+    email: string
+    firstName: string
+    lastName: string
+    role: string
+}
+
+export async function loginUser(
+    request: LoginRequest
+): Promise<LoginResponse> {
+
+    const response = await fetch(
+        'http://localhost:8080/api/auth/login',
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(request),
+        }
+    )
+
+    if (!response.ok) {
+        const errorData = await response.json()
+
+        throw new Error(
+            errorData.message || 'Login failed'
+        )
+    }
+
+    return response.json()
+}
