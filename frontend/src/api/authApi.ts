@@ -44,7 +44,7 @@ export async function registerUser(
 
 // --- Login ---
 
-// Was React beim Login sendet
+// Was React beim Login sendet(zu Backend)
 export interface LoginRequest {
     email: string
     password: string
@@ -60,6 +60,7 @@ export interface LoginResponse {
     role: string
 }
 
+// Schickt E-Mail + Passwort an das Backend und gibt die Antwort (Token + Infos) zurück
 export async function loginUser(
     request: LoginRequest
 ): Promise<LoginResponse> {
@@ -74,7 +75,7 @@ export async function loginUser(
             body: JSON.stringify(request),
         }
     )
-
+    // Wenn die Antwort ein Fehler ist: Fehler werfen (LoginPage zeigt ihn an)
     if (!response.ok) {
         const errorData = await response.json()
 

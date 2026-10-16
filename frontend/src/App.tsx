@@ -7,7 +7,7 @@ import LoginPage from './pages/LoginPage'
 import ProfilePage from './pages/ProfilePage'
 import ProtectedRoute from './components/ProtectedRoute'
 
-// Central routes: which address shows which page
+// App's address book: which address shows which page
 function App() {
     return (
         <BrowserRouter>

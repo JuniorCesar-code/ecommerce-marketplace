@@ -1,14 +1,6 @@
-import { createContext, useContext, useState } from 'react'
+import { useState } from 'react'
 import type { ReactNode } from 'react'
-
-// What our shared board holds
-interface AuthContextType {
-    token: string | null
-    login: (token: string) => void
-    logout: () => void
-}
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined)
+import { AuthContext } from './useAuth'
 
 // Shared board that holds the token and survives page reloads
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -32,13 +24,4 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             {children}
         </AuthContext.Provider>
     )
-}
-
-// Shortcut so any page can read the board easily
-export function useAuth() {
-    const context = useContext(AuthContext)
-    if (!context) {
-        throw new Error('useAuth must be used inside AuthProvider')
-    }
-    return context
 }

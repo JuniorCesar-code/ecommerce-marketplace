@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom'
 import type { ReactNode } from 'react'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../context/useAuth'
 
 // Guard: logged-in users pass through, others are sent to /login
 function ProtectedRoute({ children }: { children: ReactNode }) {
