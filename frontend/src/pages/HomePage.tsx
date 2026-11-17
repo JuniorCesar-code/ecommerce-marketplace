@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react'
 import { getHealth } from '../api/healthApi'
+import CategoryFilter from '../components/CategoryFilter'
 
 function HomePage() {
     const [backendStatus, setBackendStatus] = useState('Checking...')
+    // Which category the user picked (null = all categories)
+    const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null)
 
     useEffect(() => {
         getHealth()
@@ -21,6 +24,16 @@ function HomePage() {
             <section>
                 <h3>Backend Status</h3>
                 <p>{backendStatus}</p>
+            </section>
+
+            {/* Temporary place for the category filter until the catalog page exists */}
+            <section>
+                <h3>Categories</h3>
+                <CategoryFilter
+                    selectedId={selectedCategoryId}
+                    onChange={setSelectedCategoryId}
+                />
+                <p>Selected category id: {selectedCategoryId ?? 'all'}</p>
             </section>
         </>
     )
