@@ -1,5 +1,6 @@
 package com.marketplace.backend.config;
 
+import org.springframework.http.HttpMethod;
 import com.marketplace.backend.security.JwtFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +13,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.http.HttpMethod;
+
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class SecurityConfig {
     public SecurityConfig(JwtFilter jwtFilter) {
         this.jwtFilter = jwtFilter;
     }
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -38,6 +40,13 @@ public class SecurityConfig {
                                 "/api/auth/register",
                                 "/api/auth/login"
                         ).permitAll()
+
+                        .requestMatchers(
+                                HttpMethod.GET,
+                                "/api/products",
+                                "/api/products/*"
+                        ).permitAll()
+
                         // Anyone can read categories (no login needed)
                         .requestMatchers(HttpMethod.GET, "/api/categories").permitAll()
                         .anyRequest().authenticated()
@@ -46,6 +55,7 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 
 
     //We're telling Spring:
